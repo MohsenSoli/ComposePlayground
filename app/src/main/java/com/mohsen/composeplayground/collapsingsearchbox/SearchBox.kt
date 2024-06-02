@@ -28,6 +28,7 @@ fun SearchBox(
 
     BoxWithConstraints(
         modifier = modifier
+            .background(Color.White)
             .padding(4.dp)
             .background(color = Color.Cyan, shape = RoundedCornerShape(3.dp))
             .border(width = 4.dp, color = Color.DarkGray, shape = RoundedCornerShape(3.dp))
