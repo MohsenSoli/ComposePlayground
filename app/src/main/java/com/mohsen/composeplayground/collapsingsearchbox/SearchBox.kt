@@ -25,7 +25,6 @@ fun SearchBox(
     onValueChange: (String) -> Unit = {},
     onSearchClick: () -> Unit = {},
 ) {
-
     BoxWithConstraints(
         modifier = modifier
             .background(Color.White)
@@ -54,7 +53,6 @@ fun SearchBox(
 @Preview
 @Composable
 fun PreviewSB() {
-
     ComposePlaygroundTheme {
         Surface {
             SearchBox(

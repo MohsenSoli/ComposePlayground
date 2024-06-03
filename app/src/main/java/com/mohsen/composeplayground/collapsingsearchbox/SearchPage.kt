@@ -1,9 +1,14 @@
 package com.mohsen.composeplayground.collapsingsearchbox
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -20,15 +25,15 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun SearchPage() {
 
-    val offset = remember { mutableStateOf(0f) }
-    val heightPx = remember { mutableStateOf(0f) }
-    val heightDp = with(LocalDensity.current) { heightPx.value.toDp() }
+    val offset = remember { mutableFloatStateOf(0f) }
+    val heightPx = remember { mutableFloatStateOf(0f) }
+    val heightDp = with(LocalDensity.current) { heightPx.floatValue.toDp() }
 
     val nestedScrollConnection = remember {
         object : NestedScrollConnection {
             override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
                 val delta = available.y
-                offset.value = (offset.value + delta).coerceIn(-heightPx.value, 0f)
+                offset.floatValue = (offset.floatValue + delta).coerceIn(-heightPx.floatValue, 0f)
                 return Offset.Zero
             }
         }
@@ -36,8 +41,8 @@ fun SearchPage() {
 
     Box(
         modifier = Modifier
-        .nestedScroll(nestedScrollConnection)
-        .fillMaxSize()
+            .nestedScroll(nestedScrollConnection)
+            .fillMaxSize()
     ) {
 
         val text = remember { mutableStateOf("") }
@@ -63,8 +68,8 @@ fun SearchPage() {
 
         SearchBox(
             modifier = Modifier
-                .onGloballyPositioned { heightPx.value = it.size.height.toFloat() }
-                .graphicsLayer { translationY = offset.value }
+                .onGloballyPositioned { heightPx.floatValue = it.size.height.toFloat() }
+                .graphicsLayer { translationY = offset.floatValue }
                 .align(Alignment.TopCenter),
             value = text.value,
             onValueChange = { text.value = it },
