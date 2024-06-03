@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import com.mohsen.composeplayground.LocalNavController
-import com.mohsen.composeplayground.NavigationItem
+import com.mohsen.composeplayground.Route
 
 @Composable
 fun HomeScreen() {
@@ -16,7 +16,10 @@ fun HomeScreen() {
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(onClick = { /*TODO*/ }) {
+        val navController = LocalNavController.current
+        Button(
+            onClick = { navController?.navigate(Route.Search) }
+        ) {
             Text(text = "go to search")
         }
 

@@ -4,8 +4,9 @@ coreKtx = "1.13.1"
 espressoCore = "3.5.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
+kotlinxSerializationJson = "1.6.3"
 lifecycleRuntimeKtx = "2.8.1"
-navigation = "2.7.7"
+navigation = "2.8.0-beta02"
 compose = "1.6.7"
 kotlin = "1.9.23"
 kotlinCompiletExtensionVersion = "1.5.11"
@@ -21,6 +22,7 @@ androidx-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", v
 androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 junit = { module = "junit:junit", version.ref = "junit" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 navigation-ktx-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
