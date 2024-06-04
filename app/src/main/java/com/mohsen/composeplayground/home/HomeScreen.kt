@@ -7,7 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
-import com.mohsen.composeplayground.LocalNavController
+import navigation.LocalNavController
 import navigation.Route
 
 @Composable
