@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import com.mohsen.composeplayground.LocalNavController
-import com.mohsen.composeplayground.Route
+import navigation.Route
 
 @Composable
 fun HomeScreen() {
