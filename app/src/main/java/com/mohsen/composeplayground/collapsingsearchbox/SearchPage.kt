@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun SearchPage() {
-
     val offset = remember { mutableFloatStateOf(0f) }
     val heightPx = remember { mutableFloatStateOf(0f) }
     val heightDp = with(LocalDensity.current) { heightPx.floatValue.toDp() }

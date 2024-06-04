@@ -1,35 +1,47 @@
 package com.mohsen.composeplayground
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.compositionLocalOf
-import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import com.mohsen.composeplayground.ui.theme.ComposePlaygroundTheme
-import navigation.AppNavHost
-import navigation.LocalNavController
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.findFragment
+import androidx.navigation.createGraph
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.fragment
+import com.mohsen.composeplayground.fragments.HomeFragment
+import com.mohsen.composeplayground.fragments.SearchFragment
+import navigation.Route
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            ComposePlaygroundTheme {
-                val navController = rememberNavController()
-                CompositionLocalProvider(LocalNavController provides navController) {
-                    Surface(
-                        modifier = Modifier.fillMaxSize(),
-                        color = MaterialTheme.colors.background
-                    ) {
-                        AppNavHost(navController = navController)
-                    }
-                }
+        setContentView(R.layout.activity_main)
+        val navHosFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+        val navController = navHosFragment!!.findNavController()
+        navController.graph = navController.createGraph(
+            startDestination = Route.Home
+        ) {
+            fragment<HomeFragment, Route.Home> {
+                label = "Home"
+            }
+
+            fragment<SearchFragment, Route.Search>() {
+                label = "Search"
             }
         }
+    }
+}
+
+
+@Composable
+fun rememberFragmentNavController() = rememberGeneralOwnerFragment()?.findNavController()
+
+@Composable
+private fun rememberGeneralOwnerFragment(): Fragment? {
+    val view = LocalView.current
+    return remember(key1 = view) {
+        runCatching { view.findFragment<Fragment>() }.getOrNull()
     }
 }

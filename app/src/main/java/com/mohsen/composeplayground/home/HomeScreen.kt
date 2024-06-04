@@ -7,7 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
-import navigation.LocalNavController
+import com.mohsen.composeplayground.rememberFragmentNavController
 import navigation.Route
 
 @Composable
@@ -16,7 +16,7 @@ fun HomeScreen() {
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        val navController = LocalNavController.current
+        val navController = rememberFragmentNavController()
         Button(
             onClick = { navController?.navigate(Route.Search) }
         ) {
