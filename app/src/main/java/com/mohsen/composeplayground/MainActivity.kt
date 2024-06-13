@@ -10,9 +10,15 @@ import androidx.fragment.app.findFragment
 import androidx.navigation.createGraph
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.fragment
+import navigation.ComposeCompatFragment
 import com.mohsen.composeplayground.fragments.HomeFragment
 import com.mohsen.composeplayground.fragments.SearchFragment
+import navigation.ComposeCompat
+import navigation.ComposeRouteType
+import navigation.LegacyHome
+import navigation.LegacySearch
 import navigation.Route
+import kotlin.reflect.typeOf
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,15 +27,16 @@ class MainActivity : AppCompatActivity() {
         val navHosFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
         val navController = navHosFragment!!.findNavController()
         navController.graph = navController.createGraph(
-            startDestination = Route.Home
+            startDestination = LegacyHome
         ) {
-            fragment<HomeFragment, Route.Home> {
-                label = "Home"
-            }
+            fragment<HomeFragment, LegacyHome>()
+            fragment<SearchFragment, LegacySearch>()
+            Route.ComposeRoute::class.sealedSubclasses.forEach {
 
-            fragment<SearchFragment, Route.Search>() {
-                label = "Search"
             }
+            fragment<ComposeCompatFragment, ComposeCompat>(
+                typeMap = mapOf(typeOf<Route.ComposeRoute>() to ComposeRouteType)
+            )
         }
     }
 }
@@ -39,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 fun rememberFragmentNavController() = rememberGeneralOwnerFragment()?.findNavController()
 
 @Composable
-private fun rememberGeneralOwnerFragment(): Fragment? {
+fun rememberGeneralOwnerFragment(): Fragment? {
     val view = LocalView.current
     return remember(key1 = view) {
         runCatching { view.findFragment<Fragment>() }.getOrNull()

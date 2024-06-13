@@ -10,24 +10,18 @@ import com.mohsen.composeplayground.collapsingsearchbox.SearchPage
 import com.mohsen.composeplayground.home.HomeScreen
 
 @Composable
-fun AppNavHost(
+fun ComposeNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController,
-    startDestination: Route = Route.Home,
+    startDestination: Route.ComposeRoute = Home,
 ) {
     NavHost(
         modifier = modifier,
         navController = navController,
         startDestination = startDestination
     ) {
-
-        composable<Route.Home> {
-            HomeScreen()
-        }
-
-        composable<Route.Search> {
-            SearchPage()
-        }
+        composable<Home> { HomeScreen() }
+        composable<Search> { SearchPage() }
     }
 }
 

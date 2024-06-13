@@ -1,5 +1,6 @@
 [versions]
 activityCompose = "1.9.0"
+appcompat = "1.7.0"
 coreKtx = "1.13.1"
 espressoCore = "3.5.1"
 junit = "4.13.2"
@@ -14,6 +15,7 @@ room = "2.6.1"
 
 [libraries]
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
 androidx-junit = { module = "androidx.test.ext:junit", version.ref = "junitVersion" }
 androidx-material = { module = "androidx.compose.material:material", version.ref = "compose" }

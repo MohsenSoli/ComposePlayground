@@ -8,7 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import com.mohsen.composeplayground.rememberFragmentNavController
+import com.mohsen.composeplayground.rememberGeneralOwnerFragment
 import navigation.Route
+import navigation.Search
+import navigation.navigate
 
 @Composable
 fun HomeScreen() {
@@ -16,9 +19,9 @@ fun HomeScreen() {
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        val navController = rememberFragmentNavController()
+        val fragment = rememberGeneralOwnerFragment()
         Button(
-            onClick = { navController?.navigate(Route.Search) }
+            onClick = { fragment?.navigate(Search) }
         ) {
             Text(text = "go to search")
         }
